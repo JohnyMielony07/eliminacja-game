@@ -3,10 +3,10 @@ import React from 'react';
 const Button = ({
     value,
     className,
-    onChange
+    onClick
 }) => {
     return (
-        <button onChange={onChange} className={`${className} button`}>
+        <button onClick={onClick} className={`${className} button`} >
             {value}
         </button>
     )

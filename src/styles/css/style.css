@@ -3,3 +3,8 @@
 *::after {
   padding: 0;
   margin: 0; }
+
+.input-panel {
+  display: flex; }
+  .input-panel__button {
+    margin-left: 10px; }

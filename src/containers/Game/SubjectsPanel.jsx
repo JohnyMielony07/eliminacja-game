@@ -2,8 +2,8 @@ import React from 'react';
 
 const SubjectsPanel = () => {
     return (
-        <div>
-panel przedmiotów
+        <div className='box'>
+<p className="title is-5">panel przedmiotów</p>
         </div>
     )
 }
