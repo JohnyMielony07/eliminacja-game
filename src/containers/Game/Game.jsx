@@ -10,23 +10,37 @@ const Game = () => {
     const [subjectsList, setSubjectsList] = React.useState([]);
     const [spotesList, setSpotesList] = React.useState([]);
 
-    const vv = { playersList: playersList, setPlayersList: setPlayersList }
+    const addPlayer = newPlayer => {
+        setPlayersList([...playersList, newPlayer])
+    }
+    const addSubject = newSubject => {
+        setSubjectsList([...subjectsList, newSubject])
+    }
+    const addSpote = newSpote => {
+        setSpotesList([...spotesList, newSpote])
+    }
+
+    const playersContext = { playersList, addPlayer }
+    const subjectsContext = { subjectsList, addSubject }
+    const spotesContext = { spotesList, addSpote }
 
     return (
         <main style={{ width: '70%', margin: 'auto' }}>
-            a game
-
             <div className='columns'>
                 <div className='column'>
-                    <myContext.Provider value={vv}>
+                    <myContext.Provider value={playersContext}>
                         <PlayersPanel />
                     </myContext.Provider>
                 </div>
                 <div className='column'>
-                    <SubjectsPanel />
+                    <myContext.Provider value={subjectsContext}>
+                        <SubjectsPanel />
+                    </myContext.Provider>
                 </div>
                 <div className='column'>
-                    <SpotesPanel />
+                    <myContext.Provider value={spotesContext}>
+                        <SpotesPanel />
+                    </myContext.Provider>
                 </div>
             </div>
         </main>
