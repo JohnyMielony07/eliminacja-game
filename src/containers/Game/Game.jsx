@@ -7,22 +7,39 @@ import myContext from '../../myContext';
 const Game = () => {
 
     const [playersList, setPlayersList] = React.useState(['ddddddd', 'aaaaa']);
-    const [subjectsList, setSubjectsList] = React.useState([]);
+    const [subjectsList, setSubjectsList] = React.useState(['sss']);
     const [spotesList, setSpotesList] = React.useState([]);
 
     const addPlayer = newPlayer => {
         setPlayersList([...playersList, newPlayer])
     }
+
+    const deletePlayer = playerToDelete => {
+        const newList = playersList.filter(player => player !== playerToDelete);
+        setPlayersList(newList);
+    }
+
     const addSubject = newSubject => {
         setSubjectsList([...subjectsList, newSubject])
     }
+
+    const deleteSubject = subjectToDelete => {
+        const newList = subjectsList.filter(subject => subject !== subjectToDelete);
+        setSubjectsList(newList);
+    }
+
     const addSpote = newSpote => {
         setSpotesList([...spotesList, newSpote])
     }
 
-    const playersContext = { playersList, addPlayer }
-    const subjectsContext = { subjectsList, addSubject }
-    const spotesContext = { spotesList, addSpote }
+    const deleteSpote = spoteToDelete => {
+        const newList = spotesList.filter(spote => spote !== spoteToDelete);
+        setSpotesList(newList);
+    }
+
+    const playersContext = { playersList, addPlayer, deletePlayer }
+    const subjectsContext = { subjectsList, addSubject, deleteSubject }
+    const spotesContext = { spotesList, addSpote, deleteSpote }
 
     return (
         <main style={{ width: '70%', margin: 'auto' }}>
