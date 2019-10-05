@@ -43,35 +43,39 @@ const Game = () => {
     const subjectsContext = { subjectsList, addSubject, deleteSubject }
     const spotesContext = { spotesList, addSpote, deleteSpote }
 
-    const game = (!isGenerated)? (
+    console.log('rerender');
+    const generateCondition = playersList.length >= 3 && playersList.length === subjectsList.length && subjectsList.length === spotesList.length;
+    console.log(generateCondition);
+
+    const game = (!isGenerated) ? (
         <>
-        <div className='columns'>
-            <div className='column'>
-                <myContext.Provider value={playersContext}>
-                    <PlayersPanel />
-                </myContext.Provider>
+            <div className='columns'>
+                <div className='column'>
+                    <myContext.Provider value={playersContext}>
+                        <PlayersPanel />
+                    </myContext.Provider>
+                </div>
+                <div className='column'>
+                    <myContext.Provider value={subjectsContext}>
+                        <SubjectsPanel />
+                    </myContext.Provider>
+                </div>
+                <div className='column'>
+                    <myContext.Provider value={spotesContext}>
+                        <SpotesPanel />
+                    </myContext.Provider>
+                </div>
             </div>
-            <div className='column'>
-                <myContext.Provider value={subjectsContext}>
-                    <SubjectsPanel />
-                </myContext.Provider>
+            <div style={{ textAlign: 'center' }}>
+                <button className="button is-large is-link" disabled={!generateCondition} onClick={() => setIsGenerated(true)}>Losuj</button>
             </div>
-            <div className='column'>
-                <myContext.Provider value={spotesContext}>
-                    <SpotesPanel />
-                </myContext.Provider>
-            </div>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-            <button className="button is-large is-link" onClick={() => setIsGenerated(true)}>Losuj</button>
-        </div>
         </>
-     ) : (
-             
-        <div style={{ textAlign: 'center' }}>
-            <button className="button is-large is-link" onClick={() => setIsGenerated(false)}>Powrót</button>
-        </div>
-     )
+    ) : (
+
+            <div style={{ textAlign: 'center' }}>
+                <button className="button is-large is-link" onClick={() => setIsGenerated(false)}>Powrót</button>
+            </div>
+        )
 
     return (
         <main style={{ width: '70%', margin: 'auto' }}>

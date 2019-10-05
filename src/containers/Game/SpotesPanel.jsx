@@ -23,7 +23,7 @@ const SpotesPanel = () => {
                     </div>
                     <div className="title is-6" style={{ margin: '30px 0' }}>lista graczy:</div>
                     {spotesList.map(spote => (
-                        <div className="subtitle is-6 item-container" item-container>
+                        <div className="subtitle is-6 item-container">
                             {spote}
                             <a className="delete is-small" onClick={() => deleteSpote(spote)} />
                         </div>
