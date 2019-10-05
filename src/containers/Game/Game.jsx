@@ -10,6 +10,8 @@ const Game = () => {
     const [subjectsList, setSubjectsList] = React.useState(['sss']);
     const [spotesList, setSpotesList] = React.useState([]);
 
+    const [isGenerated, setIsGenerated] = React.useState(false);
+
     const addPlayer = newPlayer => {
         setPlayersList([...playersList, newPlayer])
     }
@@ -41,25 +43,39 @@ const Game = () => {
     const subjectsContext = { subjectsList, addSubject, deleteSubject }
     const spotesContext = { spotesList, addSpote, deleteSpote }
 
+    const game = (!isGenerated)? (
+        <>
+        <div className='columns'>
+            <div className='column'>
+                <myContext.Provider value={playersContext}>
+                    <PlayersPanel />
+                </myContext.Provider>
+            </div>
+            <div className='column'>
+                <myContext.Provider value={subjectsContext}>
+                    <SubjectsPanel />
+                </myContext.Provider>
+            </div>
+            <div className='column'>
+                <myContext.Provider value={spotesContext}>
+                    <SpotesPanel />
+                </myContext.Provider>
+            </div>
+        </div>
+        <div style={{ textAlign: 'center' }}>
+            <button className="button is-large is-link" onClick={() => setIsGenerated(true)}>Losuj</button>
+        </div>
+        </>
+     ) : (
+             
+        <div style={{ textAlign: 'center' }}>
+            <button className="button is-large is-link" onClick={() => setIsGenerated(false)}>Powrót</button>
+        </div>
+     )
+
     return (
         <main style={{ width: '70%', margin: 'auto' }}>
-            <div className='columns'>
-                <div className='column'>
-                    <myContext.Provider value={playersContext}>
-                        <PlayersPanel />
-                    </myContext.Provider>
-                </div>
-                <div className='column'>
-                    <myContext.Provider value={subjectsContext}>
-                        <SubjectsPanel />
-                    </myContext.Provider>
-                </div>
-                <div className='column'>
-                    <myContext.Provider value={spotesContext}>
-                        <SpotesPanel />
-                    </myContext.Provider>
-                </div>
-            </div>
+            {game}
         </main>
     )
 }
